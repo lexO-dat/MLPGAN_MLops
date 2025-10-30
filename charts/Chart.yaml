@@ -1,0 +1,6 @@
+apiVersion: v2
+name: mlpgan
+description: desplegado de la API del modelo MLPGAN
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

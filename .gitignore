@@ -1,0 +1,10 @@
+# ignore the .venv folder
+.venv/*
+.venv/
+
+# ignore cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd  
+
