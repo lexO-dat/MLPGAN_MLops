@@ -37,12 +37,12 @@ API
 app = FastAPI(
     title="MLPGAN Image Generator API",
     version="1.0.0",
-    description="API para generar imágenes con un modelo GAN entrenado automáticamente vía CI/CD",
+    description="api simple de ML",
 )
 
 @app.get("/", response_class=PlainTextResponse)
 def root():
-    return "Simple API de generación de imágenes con una MLPGAN."
+    return "prueba sync argoCD"
 
 @app.get("/health", response_class=PlainTextResponse)
 def health_check():
