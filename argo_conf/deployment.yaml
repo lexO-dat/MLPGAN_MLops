@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlpgan-api
+  namespace: mlpgan
+  labels:
+    app: mlpgan-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mlpgan-api
+  template:
+    metadata:
+      labels:
+        app: mlpgan-api
+    spec:
+      containers:
+        - name: mlpgan-api
+          image: lexodat2111/mlpgan-api:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 200m
+              memory: 256Mi
