@@ -16,7 +16,7 @@ lr = float(os.getenv("LR", 3e-4))
 z_dim = int(os.getenv("Z_DIM", 64))
 image_dim = 28 * 28 * 1
 batch_size = int(os.getenv("BATCH_SIZE", 100))
-num_epochs = int(os.getenv("EPOCHS", 50))
+num_epochs = int(os.getenv("EPOCHS", 2))
 
 # Directorio de salida
 output_dir = os.getenv("OUTPUT_DIR", "./output")
