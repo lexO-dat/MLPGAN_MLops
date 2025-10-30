@@ -17,6 +17,14 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+          
+      - name: Cache Python dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
       - name: Install dependencies
         run: |
@@ -36,12 +44,3 @@ jobs:
           IMAGE=lexodat2111/mlpgan-api:latest
           docker build -t $IMAGE .
           docker push $IMAGE
-
-      - name: Update Helm values
-        run: |
-          sed -i "s|image: .*|image: lexodat2111/mlpgan-api:latest|g" charts/values.yaml
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          git add charts/values.yaml
-          git commit -m "Update image after training"
-          git push
