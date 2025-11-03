@@ -56,7 +56,8 @@ jobs:
           sed -i "s/# last-updated:.*/# last-updated: $TIMESTAMP/" argo_conf/deployment.yaml || echo "# last-updated: $TIMESTAMP" >> argo_conf/deployment.yaml
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add argo_conf/deployment.yaml
+          git add argo_conf/deployment.yaml output/*.pth
           git commit -m "Trigger ArgoCD deploy at $TIMESTAMP"
           git push
+
 
