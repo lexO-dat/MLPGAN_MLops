@@ -42,7 +42,7 @@ app = FastAPI(
 
 @app.get("/", response_class=PlainTextResponse)
 def root():
-    return "prueba sync argoCD"
+    return "test"
 
 @app.get("/health", response_class=PlainTextResponse)
 def health_check():

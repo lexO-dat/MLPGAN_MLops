@@ -14,6 +14,8 @@ spec:
     metadata:
       labels:
         app: mlpgan-api
+      annotations:
+        last-updated: "0"
     spec:
       containers:
         - name: mlpgan-api

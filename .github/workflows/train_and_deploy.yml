@@ -65,14 +65,20 @@ jobs:
           docker build -t $IMAGE .
           docker push $IMAGE
 
-      - name: update deployment yaml
+      - name: Update deployment yaml and commit
         run: |
           TIMESTAMP=$(date +%s)
           sed -i "s/# last-updated:.*/# last-updated: $TIMESTAMP/" argo_conf/deployment.yaml || echo "# last-updated: $TIMESTAMP" >> argo_conf/deployment.yaml
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add argo_conf/deployment.yaml output/*.pth
-          git commit -m "Trigger ArgoCD deploy at $TIMESTAMP"
-          git push
+          git add argo_conf/deployment.yaml
+          
+          if git diff --cached --quiet; then
+            echo "No changes to commit, skipping git push"
+          else
+            git commit -m "Trigger ArgoCD deploy at $TIMESTAMP"
+            git push
+          fi
+
 
 
