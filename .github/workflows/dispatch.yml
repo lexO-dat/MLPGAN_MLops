@@ -1,0 +1,10 @@
+name: Manual Dispatch Example
+on: 
+  workflow_dispatch: # This enables the manual trigger
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Greeting
+        run: echo "Hello! This was triggered manually by ${{ github.actor }}."
